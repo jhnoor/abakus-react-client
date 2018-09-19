@@ -1,16 +1,16 @@
 import React, { PureComponent } from "react";
-import './Hobbyists.css';
+import "./Projects.css";
 
-export class Hobbyists extends PureComponent {
+export class Projects extends PureComponent {
   render() {
     const list = [0, 1, 2, 3];
     return (
       <div>
-        <h3 className="page-title">All hobbyists</h3>
+        <h3 className="page-title">All projects</h3>
         <div className="page-container">
           <div class="list">
             {list.map((x, i) => (
-              <HobbyistItem key={i} project={x} />
+              <ProjectItem key={i} project={x} />
             ))}
           </div>
         </div>
@@ -19,8 +19,8 @@ export class Hobbyists extends PureComponent {
   }
 }
 
-class HobbyistItem extends PureComponent {
+class ProjectItem extends PureComponent {
   render() {
-    return <div class="hobbyist-item">ListItem {this.props.project}</div>;
+    return <div class="project-item">ListItem {this.props.project}</div>;
   }
 }
