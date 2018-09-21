@@ -1,28 +1,30 @@
 import React, { PureComponent } from "react";
 import { NavLink, Link } from "react-router-dom";
+import axios from 'axios';
 import "./Header.css";
 
 export default class Header extends PureComponent {
   constructor() {
     super();
     this.state = {
-      user: {
-        id: 1,
-        kudos: 320,
-        name: "Ada Lovelace",
-        imageUrl:
-          "https://vignette.wikia.nocookie.net/curious-expedition/images/a/a0/Lovelace.jpg"
-      }
+      user: null
     };
+  }
+
+  componentDidMount() {
+    axios.get("/api/v1/auth/user").then(users => {
+      console.log(users.data);
+      this.setState({ users: users.data });
+    });
   }
 
   render() {
     return (
       <div>
         <div className="top-header">
-          <Link className="logo" to="/projects">
+          <a className="logo" href="/">
             Hobbyist
-          </Link>
+          </a>
           <UserHeaderInfo user={this.state.user} />
         </div>
         <nav className="links-header">
@@ -47,22 +49,20 @@ class UserHeaderInfo extends PureComponent {
   };
 
   render() {
-    const profileStyle = {
-      backgroundImage: "url(" + this.props.user.imageUrl + ")"
-    };
+    if (this.props.user) {
+      return (
+        <Link to={"/hobbyist/" + this.props.user.id} className="user-header-info">
+          <span className="kudos-badge">
+            {(this.props.user.kudos > 0 ? "+" : "-") + this.props.user.kudos}
+          </span>
+          <span className="user-header-info--name">{this.props.user.name}</span>
 
-    return (
-      <Link to={"/hobbyist/" + this.props.user.id} className="user-header-info">
-        <span className="kudos-badge">
-          {(this.props.user.kudos > 0 ? "+" : "-") + this.props.user.kudos}
-        </span>
-        <span className="user-header-info--name">{this.props.user.name}</span>
-        <div
-          style={profileStyle}
-          id="header-profile-image"
-          className="cropcircle"
-        />
-      </Link>
-    );
+        </Link>
+      );
+    } else {
+      return <Link to="/login" className="login">Log in</Link>
+    }
+
+    
   }
 }

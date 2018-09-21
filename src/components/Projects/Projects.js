@@ -11,7 +11,7 @@ export class Projects extends PureComponent {
   }
 
   componentDidMount() {
-    axios.get("/api/projects").then(x => {
+    axios.get("/api/v1/projects").then(x => {
       console.log(x.data);
       this.setState({ projects: x.data });
     });

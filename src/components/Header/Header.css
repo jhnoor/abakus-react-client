@@ -75,3 +75,12 @@
   background: #eee no-repeat center;
   background-size: cover;
 }
+
+.login {
+  color: white;
+  margin: 0.2rem 0.5rem;
+  font-weight: 100;
+}
+.login:hover {
+  text-decoration: underline;
+}

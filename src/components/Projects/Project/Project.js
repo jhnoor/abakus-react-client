@@ -3,18 +3,20 @@ import axios from "axios";
 import "./Project.css";
 import { ProjectMetrics } from "./ProjectMetrics";
 import { Comment } from "./Comment/Comment";
+import { HobbyistItem } from "../../Hobbyists/Hobbyists";
 
 export class Project extends PureComponent {
   constructor() {
     super();
     this.state = {
       karma: 0,
-      comments: []
+      comments: [],
+      owner: { username: "No owner", kudos: 0 }
     };
   }
 
   componentDidMount() {
-    axios.get("/api/projects/" + this.props.match.params.id).then(project => {
+    axios.get("/api/v1/projects/" + this.props.match.params.id).then(project => {
       console.log(project.data);
       this.setState(project.data);
     });
@@ -39,11 +41,19 @@ export class Project extends PureComponent {
             <div className="project-body-chunk">
               <span className="page-subtitle">Comments</span>
               {this.state.comments.map(comment => (
-                <Comment key={comment.id} username={comment.commenter.username} commenterId={comment.commenter.id} text={comment.text} />
+                <Comment
+                  key={comment.id}
+                  username={comment.commenter.username}
+                  commenterId={comment.commenter.id}
+                  text={comment.text}
+                />
               ))}
             </div>
           </div>
         </div>
+        <span className="page-subtitle">Owner</span>
+
+        <HobbyistItem username={this.state.owner.username} kudos={this.state.owner.kudos}/>
       </div>
     );
   }

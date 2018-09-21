@@ -54,6 +54,7 @@
 .number-of-comments {
   font-size: 12px;
   background-color: #c2c2c2;
+  line-height: 1;
   color: #4d4d4d;
   padding: 0.1rem 0.5rem;
   border-radius: 10px;

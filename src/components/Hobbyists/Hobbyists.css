@@ -1,7 +1,21 @@
 .hobbyist-item {
-    background-color: #C4C4C4;
-    width: 80%;
-    margin: 0.5rem 0rem;
-    padding: 1rem;
-    color: #4d4d4d;
+  display: flex;
+  flex-flow: row;
+  background-color: #c4c4c4;
+  margin: 0.5rem 0rem;
+  padding: 0.5rem;
+  width: 80%
+}
+
+
+.hobbyist-item--name {
+  font-size: 25px;
+  font-weight: 300;
+  margin-bottom: 0.2rem;
+  margin-left: 1rem;
+  color: #4d4d4d
+}
+
+.hobbyist-item--name:hover {
+    text-decoration: underline;
 }

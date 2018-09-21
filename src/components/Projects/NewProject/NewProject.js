@@ -16,7 +16,7 @@ export class NewProject extends PureComponent {
               <label>description</label>
               <textarea className="description" type="text" />
             </div>
-            <button class="btn btn-success">Create Project</button>
+            <button className="btn btn-success">Create Project</button>
           </div>
         </div>
       </div>
