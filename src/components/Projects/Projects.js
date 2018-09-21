@@ -1,16 +1,37 @@
 import React, { PureComponent } from "react";
+import axios from "axios";
+import { Link } from 'react-router-dom';
 import "./Projects.css";
+import {ProjectMetrics} from './Project/ProjectMetrics';
 
 export class Projects extends PureComponent {
+  constructor() {
+    super();
+    this.state = { projects: [] };
+  }
+
+  componentDidMount() {
+    axios.get("/api/projects").then(x => {
+      console.log(x.data);
+      this.setState({ projects: x.data });
+    });
+  }
+
   render() {
-    const list = [0, 1, 2, 3];
     return (
       <div>
         <h3 className="page-title">All projects</h3>
         <div className="page-container">
-          <div class="list">
-            {list.map((x, i) => (
-              <ProjectItem key={i} project={x} />
+          <div className="list">
+            {this.state.projects.map(project => (
+              <ProjectItem
+                key={project.id}
+                id={project.id}
+                name={project.name}
+                description={project.description}
+                karma={project.karma}
+                comments={project.comments}
+              />
             ))}
           </div>
         </div>
@@ -20,7 +41,25 @@ export class Projects extends PureComponent {
 }
 
 class ProjectItem extends PureComponent {
+  static defaultProps = {
+    id: 1,
+    name: "no name",
+    description: "no description",
+    karma: 0,
+    comments: []
+  };
+
   render() {
-    return <div class="project-item">ListItem {this.props.project}</div>;
+    return (
+      <div className="project-item">
+        <ProjectMetrics karma={this.props.karma} comments={this.props.comments}/>
+        <div className="project-item--group">
+          <Link to={'project/'+this.props.id} className="project-item--name">{this.props.name}</Link>
+          <div className="project-item--description">
+            {this.props.description}
+          </div>
+        </div>
+      </div>
+    );
   }
 }

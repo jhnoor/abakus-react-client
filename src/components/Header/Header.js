@@ -1,59 +1,51 @@
 import React, { PureComponent } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  NavLink,
-  Link
-} from "react-router-dom";
-import { Home } from "../Home";
-import { Hobbyists } from "../Hobbyists/Hobbyists";
-import { Hobbyist } from "../Hobbyists/Hobbyist/Hobbyist";
-import { Projects } from "../Projects/Projects";
-import { NewProject } from "../Projects/NewProject/NewProject";
+import { NavLink, Link } from "react-router-dom";
 import "./Header.css";
 
 export default class Header extends PureComponent {
-  render() {
-    const user = {
-      id: 1,
-      kudos: 320,
-      name: "Ada Lovelace",
-      imageUrl:
-        "https://vignette.wikia.nocookie.net/curious-expedition/images/a/a0/Lovelace.jpg"
+  constructor() {
+    super();
+    this.state = {
+      user: {
+        id: 1,
+        kudos: 320,
+        name: "Ada Lovelace",
+        imageUrl:
+          "https://vignette.wikia.nocookie.net/curious-expedition/images/a/a0/Lovelace.jpg"
+      }
     };
-    return (
-      <Router>
-        <div>
-          <div className="top-header">
-            <Link className="logo" to="/home">
-              Hobbyist
-            </Link>
-            <UserHeaderInfo user={user} />
-          </div>
-          <nav className="links-header">
-            <NavLink to="/projects" className="link">
-              Projects
-            </NavLink>
-            <NavLink to="/new-project" className="btn btn-success">
-              Create new project
-            </NavLink>
-            <NavLink to="/hobbyists" className="link">
-              Hobbyists
-            </NavLink>
-          </nav>
+  }
 
-          <Route exact path="/home" component={Home} />
-          <Route path="/hobbyists" component={Hobbyists} />
-          <Route path="/projects" component={Projects} />
-          <Route path="/new-project" component={NewProject} />
-          <Route path="/hobbyist/:id" component={Hobbyist} />
+  render() {
+    return (
+      <div>
+        <div className="top-header">
+          <Link className="logo" to="/home">
+            Hobbyist
+          </Link>
+          <UserHeaderInfo user={this.state.user} />
         </div>
-      </Router>
+        <nav className="links-header">
+          <NavLink to="/projects" className="link">
+            Projects
+          </NavLink>
+          <NavLink to="/new-project" className="btn btn-success">
+            Create new project
+          </NavLink>
+          <NavLink to="/hobbyists" className="link">
+            Hobbyists
+          </NavLink>
+        </nav>
+      </div>
     );
   }
 }
 
 class UserHeaderInfo extends PureComponent {
+  static defaultProps = {
+    user: null
+  };
+
   render() {
     const profileStyle = {
       backgroundImage: "url(" + this.props.user.imageUrl + ")"

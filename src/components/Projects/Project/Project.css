@@ -1,0 +1,23 @@
+.project-page {
+  background-color: #4D5061;
+  color: #f5f5f5;
+  padding: 1rem 0.5rem;
+}
+
+.project-body {
+  display: flex;
+  flex-flow: row;
+}
+
+.project-description {
+  font-size: 18px;
+  font-weight: 200;
+}
+
+.project-body-chunk {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: center;
+}

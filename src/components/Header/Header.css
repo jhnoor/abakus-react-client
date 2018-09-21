@@ -1,8 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Gothic+A1:100,200");
 
 .links-header {
-  font-family: "Gothic A1", sans-serif;
-  font-weight: 200;
+  font-family: sans-serif;
+  font-weight: 100;
   display: flex;
   flex-flow: row;
   justify-content: space-around;
@@ -48,6 +47,8 @@
   background-color: #e2a300;
   padding: 0.1rem 0.4rem;
   border-radius: 2px;
+  line-height: 1.2;
+  font-weight: 100;
   color: #4d5061;
 }
 .mvp-badge {

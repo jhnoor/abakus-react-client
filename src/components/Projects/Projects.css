@@ -1,9 +1,74 @@
-
-
 .project-item {
-    background-color: #4D5061;
-    width: 80%;
-    margin: 0.5rem 0rem;
-    padding: 1rem;
-    color: #fafafa;
+  background-color: #4d5061;
+  width: 80%;
+  margin: 0.5rem 0rem;
+  padding: 1rem;
+  color: #fafafa;
+  display: flex;
+  flex-flow: row;
+}
+
+.project-item--group {
+  display: flex;
+  flex-flow: column;
+}
+
+.project-item--name {
+  font-size: 22px;
+  font-weight: 600;
+  color: #f5f5f5;
+}
+
+.project-item--name:hover {
+  text-decoration: underline;
+}
+
+.project-item--description {
+  font-size: 14px;
+  color: rgb(216, 216, 216);
+}
+
+.metrics {
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding-top: 4px;
+}
+
+.karma {
+  display: flex;
+  flex-flow: column;
+  width: 30px;
+  height: 40px;
+  justify-content: space-between;
+}
+
+.karma-count {
+  font-size: 12px;
+  color: #c2c2c2;
+  line-height: 2;
+  white-space: nowrap;
+}
+
+.number-of-comments {
+  font-size: 12px;
+  background-color: #c2c2c2;
+  color: #4d4d4d;
+  padding: 0.1rem 0.5rem;
+  border-radius: 10px;
+}
+
+.karma > button {
+  padding: 0.1rem;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.karma > .up {
+  border: 1px solid orange;
+}
+.karma > .down {
+  border: 1px solid skyblue;
 }
