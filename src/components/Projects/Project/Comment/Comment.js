@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { Link } from 'react-router-dom';
 import './Comment.css';
 
 export class Comment extends PureComponent {
@@ -7,7 +8,7 @@ export class Comment extends PureComponent {
     return (
       <div className="project-comment">
         <div className="project-comment--text">{this.props.text}</div>
-        <div className="project-comment--username">{this.props.username}</div>
+        <Link to={"../hobbyist/"+this.props.commenterId} className="project-comment--username">{this.props.username}</Link>
       </div>
     );
   }

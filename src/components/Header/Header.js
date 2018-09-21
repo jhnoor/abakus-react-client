@@ -20,7 +20,7 @@ export default class Header extends PureComponent {
     return (
       <div>
         <div className="top-header">
-          <Link className="logo" to="/home">
+          <Link className="logo" to="/projects">
             Hobbyist
           </Link>
           <UserHeaderInfo user={this.state.user} />

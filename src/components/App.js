@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import Header from "./Header/Header";
 import {
   BrowserRouter as Router,
+  Redirect,
   Route,
 } from "react-router-dom";
 
-import { Home } from "./Home";
 import { Hobbyists } from "./Hobbyists/Hobbyists";
 import { Hobbyist } from "./Hobbyists/Hobbyist/Hobbyist";
 import { Projects } from "./Projects/Projects";
@@ -19,12 +19,14 @@ class App extends Component {
       <Router>
         <div>
           <Header />
-          <Route exact path="/home" component={Home} />
+
           <Route path="/hobbyists" component={Hobbyists} />
           <Route path="/projects" component={Projects} />
           <Route path="/project/:id" component={Project} />
           <Route path="/new-project" component={NewProject} />
           <Route path="/hobbyist/:id" component={Hobbyist} />
+          <Route exact path="/" component={() => <Redirect to="/projects" />}/>
+
         </div>
       </Router>
     );

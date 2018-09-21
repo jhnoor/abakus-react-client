@@ -8,7 +8,7 @@ export class Hobbyists extends PureComponent {
       <div>
         <h3 className="page-title">All hobbyists</h3>
         <div className="page-container">
-          <div class="list">
+          <div className="list">
             {list.map((x, i) => (
               <HobbyistItem key={i} project={x} />
             ))}
@@ -21,6 +21,6 @@ export class Hobbyists extends PureComponent {
 
 class HobbyistItem extends PureComponent {
   render() {
-    return <div class="hobbyist-item">ListItem {this.props.project}</div>;
+    return <div className="hobbyist-item">ListItem {this.props.project}</div>;
   }
 }

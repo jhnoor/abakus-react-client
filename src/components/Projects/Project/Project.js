@@ -39,7 +39,7 @@ export class Project extends PureComponent {
             <div className="project-body-chunk">
               <span className="page-subtitle">Comments</span>
               {this.state.comments.map(comment => (
-                <Comment key={comment.id} username={comment.commenter.username} text={comment.text} />
+                <Comment key={comment.id} username={comment.commenter.username} commenterId={comment.commenter.id} text={comment.text} />
               ))}
             </div>
           </div>
