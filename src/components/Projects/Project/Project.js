@@ -2,12 +2,14 @@ import React, { PureComponent } from "react";
 import axios from "axios";
 import "./Project.css";
 import { ProjectMetrics } from "./ProjectMetrics";
+import { Comment } from "./Comment/Comment";
 
 export class Project extends PureComponent {
   constructor() {
     super();
     this.state = {
-      karma: 0
+      karma: 0,
+      comments: []
     };
   }
 
@@ -27,9 +29,19 @@ export class Project extends PureComponent {
             karma={this.state.karma}
             comments={this.state.comments}
           />
-          <div className="project-body-chunk">
-            <span className="page-subtitle">Description</span>
-            <span className="project-description">{this.state.description}</span>
+          <div>
+            <div className="project-body-chunk">
+              <span className="page-subtitle">Description</span>
+              <span className="project-description">
+                {this.state.description}
+              </span>
+            </div>
+            <div className="project-body-chunk">
+              <span className="page-subtitle">Comments</span>
+              {this.state.comments.map(comment => (
+                <Comment key={comment.id} username={comment.commenter.username} text={comment.text} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

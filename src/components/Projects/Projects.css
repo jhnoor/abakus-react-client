@@ -30,7 +30,7 @@
 
 .metrics {
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   margin-right: 10px;
   margin-left: 10px;
   padding-top: 4px;
