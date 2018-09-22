@@ -16,44 +16,48 @@ export class Project extends PureComponent {
   }
 
   componentDidMount() {
-    axios.get("/api/v1/projects/" + this.props.match.params.id).then(project => {
-      console.log(project.data);
-      this.setState(project.data);
-    });
+    axios
+      .get("/api/v1/projects/" + this.props.match.params.id)
+      .then(project => {
+        console.log(project.data);
+        this.setState(project.data);
+      });
   }
 
   render() {
     return (
       <div className="project-page">
-        <h3 className="page-title">{this.state.name}</h3>
+        <ProjectMetrics
+          karma={this.state.karma}
+          comments={this.state.comments}
+        />
         <div className="project-body">
-          <ProjectMetrics
-            karma={this.state.karma}
-            comments={this.state.comments}
-          />
-          <div>
-            <div className="project-body-chunk">
-              <span className="page-subtitle">Description</span>
-              <span className="project-description">
-                {this.state.description}
-              </span>
-            </div>
-            <div className="project-body-chunk">
-              <span className="page-subtitle">Comments</span>
-              {this.state.comments.map(comment => (
-                <Comment
-                  key={comment.id}
-                  username={comment.commenter.username}
-                  commenterId={comment.commenter.id}
-                  text={comment.text}
-                />
-              ))}
-            </div>
+          <h3 className="project-title">{this.state.name}</h3>
+          <div className="project-body-chunk">
+            <span className="page-subtitle">Description</span>
+            <span className="project-description">
+              {this.state.description}
+            </span>
+          </div>
+          <div className="project-body-chunk">
+            <span className="page-subtitle">Comments</span>
+            {this.state.comments.map(comment => (
+              <Comment
+                key={comment.id}
+                username={comment.commenter.username}
+                commenterId={comment.commenter.id}
+                text={comment.text}
+              />
+            ))}
           </div>
         </div>
-        <span className="page-subtitle">Owner</span>
-
-        <HobbyistItem username={this.state.owner.username} kudos={this.state.owner.kudos}/>
+        <div className="project-owner">
+          <span className="page-subtitle">Owner</span>
+          <HobbyistItem
+            username={this.state.owner.username}
+            kudos={this.state.owner.kudos}
+          />
+        </div>
       </div>
     );
   }

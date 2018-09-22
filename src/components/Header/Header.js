@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { NavLink, Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import "./Header.css";
 
 export default class Header extends PureComponent {
@@ -12,9 +12,10 @@ export default class Header extends PureComponent {
   }
 
   componentDidMount() {
-    axios.get("/api/v1/auth/user").then(users => {
-      console.log(users.data);
-      this.setState({ users: users.data });
+    const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
+    axios.get("/api/v1/auth/user", { headers }).then(user => {
+      this.setState({ user: user.data });
+      console.log(this.state);
     });
   }
 
@@ -51,18 +52,25 @@ class UserHeaderInfo extends PureComponent {
   render() {
     if (this.props.user) {
       return (
-        <Link to={"/hobbyist/" + this.props.user.id} className="user-header-info">
-          <span className="kudos-badge">
-            {(this.props.user.kudos > 0 ? "+" : "-") + this.props.user.kudos}
-          </span>
-          <span className="user-header-info--name">{this.props.user.name}</span>
-
-        </Link>
+        <div className="flex flex-flow-row">
+          <Link
+            to={"/hobbyist/" + this.props.user.id}
+            className="user-header-info"
+          >
+            <span className="kudos-badge">{"+" + this.props.user.kudos}</span>
+            <span className="user-header-info--name">
+              {this.props.user.username}
+            </span>
+          </Link>
+          <button className="btn btn-default">logout</button>
+        </div>
       );
     } else {
-      return <Link to="/login" className="login">Log in</Link>
+      return (
+        <Link to="/login" className="login">
+          Log in
+        </Link>
+      );
     }
-
-    
   }
 }

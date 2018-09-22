@@ -6,6 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 
+import { Login } from './Auth/Login';
 import { Hobbyists } from "./Hobbyists/Hobbyists";
 import { Hobbyist } from "./Hobbyists/Hobbyist/Hobbyist";
 import { Projects } from "./Projects/Projects";
@@ -20,6 +21,7 @@ class App extends Component {
         <div>
           <Header />
 
+          <Route path="/login" component={Login} />
           <Route path="/hobbyists" component={Hobbyists} />
           <Route path="/projects" component={Projects} />
           <Route path="/project/:id" component={Project} />
