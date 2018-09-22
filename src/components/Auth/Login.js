@@ -10,8 +10,8 @@ export class Login extends PureComponent {
   };
 
   componentDidMount() {
-    const headers = {Authorization: `Token ${localStorage.getItem('token')}`}
-    axios.get("/api/v1/auth/user", {headers}).then(user => {
+    const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
+    axios.get("/api/v1/auth/user", { headers }).then(user => {
       this.setState({ user: user.data });
     });
   }

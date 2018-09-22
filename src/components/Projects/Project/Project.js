@@ -32,7 +32,7 @@ export class Project extends PureComponent {
           comments={this.state.comments}
         />
         <div className="project-body">
-          <h3 className="project-title">{this.state.name}</h3>
+          <h3 className="project-title">{this.state.title}</h3>
           <div className="project-body-chunk">
             <span className="page-subtitle">Description</span>
             <span className="project-description">

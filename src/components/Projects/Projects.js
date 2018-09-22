@@ -27,7 +27,7 @@ export class Projects extends PureComponent {
               <ProjectItem
                 key={project.id}
                 id={project.id}
-                name={project.name}
+                title={project.title}
                 description={project.description}
                 karma={project.karma}
                 comments={project.comments}
@@ -43,7 +43,7 @@ export class Projects extends PureComponent {
 class ProjectItem extends PureComponent {
   static defaultProps = {
     id: 1,
-    name: "no name",
+    title: "no title",
     description: "no description",
     karma: 0,
     comments: []
@@ -54,7 +54,7 @@ class ProjectItem extends PureComponent {
       <div className="project-item">
         <ProjectMetrics karma={this.props.karma} comments={this.props.comments}/>
         <div className="project-item--group">
-          <Link to={'project/'+this.props.id} className="project-item--name">{this.props.name}</Link>
+          <Link to={'project/'+this.props.id} className="project-item--title">{this.props.title}</Link>
           <div className="project-item--description">
             {this.props.description}
           </div>

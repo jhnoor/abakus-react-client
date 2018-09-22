@@ -13,14 +13,14 @@
   flex-flow: column;
 }
 
-.project-item--name {
+.project-item--title {
   font-size: 22px;
   font-weight: 600;
   color: #f5f5f5;
   margin-bottom: 0.5rem;
 }
 
-.project-item--name:hover {
+.project-item--title:hover {
   text-decoration: underline;
 }
 

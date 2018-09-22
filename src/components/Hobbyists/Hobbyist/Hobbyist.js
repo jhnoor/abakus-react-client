@@ -29,10 +29,8 @@ export class Hobbyist extends PureComponent {
               <SimpleProjectItem
                 key={project.id}
                 id={project.id}
-                name={project.name}
-                // description={project.description}
+                title={project.title}
                 karma={project.karma}
-                // comments={project.comments}
               />
             ))}
           </div>
@@ -74,7 +72,7 @@ class HobbyistUser extends PureComponent {
 }
 
 const SimpleProjectItem = props => (
-      <Link to={"/project/" + props.id} className="project-item project-item--name">
-        {props.name}
+      <Link to={"/project/" + props.id} className="project-item project-item--title">
+        {props.title}
       </Link>
 );

@@ -35,6 +35,8 @@ a {
 
 .page-container {
   padding: 0.2rem 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .btn {
@@ -88,6 +90,17 @@ a {
   font-size: 18px;
   padding: 0.1rem 0.3rem;
   background-color: transparent;
+  outline: none;
+}
+
+.input-group > textarea {
+  border: 1px solid #5c80bc;
+  border-radius: 3px;
+  outline: none;
+  resize: none;
+  height: 5rem;
+  font-size: 14px;
+  padding: 0.2rem;
 }
 
 .flex { display: flex }

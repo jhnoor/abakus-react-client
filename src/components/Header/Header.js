@@ -47,9 +47,9 @@ export default class Header extends PureComponent {
           <NavLink to="/projects" className="link">
             Projects
           </NavLink>
-          <NavLink to="/new-project" className="btn btn-success">
+          {this.state.user ? <NavLink to="/new-project" className="btn btn-success">
             Create new project
-          </NavLink>
+          </NavLink> : null}
           <NavLink to="/hobbyists" className="link">
             Hobbyists
           </NavLink>
