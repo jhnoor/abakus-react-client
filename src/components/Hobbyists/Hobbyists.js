@@ -42,9 +42,9 @@ export class Hobbyists extends PureComponent {
 export class HobbyistItem extends PureComponent {
   render() {
     return (
-      <div className="hobbyist-item">
+      <div className="hobbyist-item" style={this.props.style}>
         <div>
-          <span className="kudos-badge">+{this.props.kudos}</span>
+          <span className="badge kudos-badge">+{this.props.kudos}</span>
         </div>
         <Link to={"../hobbyist/"+this.props.id} className="hobbyist-item--name">{this.props.username}</Link>
       </div>

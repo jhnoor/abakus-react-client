@@ -9,6 +9,7 @@ export default class Header extends PureComponent {
     this.state = {
       user: null
     };
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
@@ -16,7 +17,18 @@ export default class Header extends PureComponent {
     axios.get("/api/v1/auth/user", { headers }).then(user => {
       this.setState({ user: user.data });
       console.log(this.state);
-    });
+    }).catch(() => {
+      this.authError()
+    })
+  }
+
+  authError() {
+    this.logout();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.setState({user: null});
   }
 
   render() {
@@ -26,7 +38,7 @@ export default class Header extends PureComponent {
           <a className="logo" href="/">
             Hobbyist
           </a>
-          <UserHeaderInfo user={this.state.user} />
+          <UserHeaderInfo user={this.state.user} logoutCallback={this.logout}/>
         </div>
         <nav className="links-header">
           <NavLink to="/projects" className="link">
@@ -57,12 +69,12 @@ class UserHeaderInfo extends PureComponent {
             to={"/hobbyist/" + this.props.user.id}
             className="user-header-info"
           >
-            <span className="kudos-badge">{"+" + this.props.user.kudos}</span>
+            <span className="badge kudos-badge">{"+" + this.props.user.kudos}</span>
             <span className="user-header-info--name">
               {this.props.user.username}
             </span>
           </Link>
-          <button className="btn btn-default">logout</button>
+          <button className="btn btn-default" onClick={this.props.logoutCallback}>logout</button>
         </div>
       );
     } else {

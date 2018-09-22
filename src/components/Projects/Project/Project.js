@@ -11,6 +11,7 @@ export class Project extends PureComponent {
     this.state = {
       karma: 0,
       comments: [],
+      participants: [],
       owner: { username: "No owner", kudos: 0 }
     };
   }
@@ -19,7 +20,6 @@ export class Project extends PureComponent {
     axios
       .get("/api/v1/projects/" + this.props.match.params.id)
       .then(project => {
-        console.log(project.data);
         this.setState(project.data);
       });
   }
@@ -40,6 +40,26 @@ export class Project extends PureComponent {
             </span>
           </div>
           <div className="project-body-chunk">
+            <span className="page-subtitle">Owner</span>
+            <HobbyistItem
+              style={{ borderRadius: "5px", fontSize: "14px" }}
+              id={this.state.owner.id}
+              username={this.state.owner.username}
+              kudos={this.state.owner.kudos}
+            />
+          </div>
+          <div className="project-body-chunk">
+            <span className="page-subtitle">Participants</span>
+            {this.state.participants.map(p => (
+              <HobbyistItem
+                style={{ borderRadius: "5px", fontSize: "14px" }}
+                id={p.id}
+                username={p.username}
+                kudos={p.kudos}
+              />
+            ))}
+          </div>
+          <div className="project-body-chunk">
             <span className="page-subtitle">Comments</span>
             {this.state.comments.map(comment => (
               <Comment
@@ -50,13 +70,6 @@ export class Project extends PureComponent {
               />
             ))}
           </div>
-        </div>
-        <div className="project-owner">
-          <span className="page-subtitle">Owner</span>
-          <HobbyistItem
-            username={this.state.owner.username}
-            kudos={this.state.owner.kudos}
-          />
         </div>
       </div>
     );
