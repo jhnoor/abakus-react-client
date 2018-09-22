@@ -53,6 +53,7 @@ export class Project extends PureComponent {
             {this.state.participants.map(p => (
               <HobbyistItem
                 style={{ borderRadius: "5px", fontSize: "14px" }}
+                key={p.id}
                 id={p.id}
                 username={p.username}
                 kudos={p.kudos}

@@ -24,9 +24,9 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/hobbyists" component={Hobbyists} />
           <Route path="/projects" component={Projects} />
-          <Route path="/project/:id" component={Project} />
+          <Route path="/project/:id" render={(props) => <Project key={props.match.params.id} {...props}/>} />
           <Route path="/new-project" component={NewProject} />
-          <Route path="/hobbyist/:id" component={Hobbyist} />
+          <Route path="/hobbyist/:id" render={(props) => <Hobbyist key={props.match.params.id} {...props}/>} />
           <Route exact path="/" component={() => <Redirect to="/projects" />}/>
 
         </div>

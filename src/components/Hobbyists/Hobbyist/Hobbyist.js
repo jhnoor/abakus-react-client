@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Hobbyist.css";
 
 export class Hobbyist extends PureComponent {
-  state = { project_set: [] };
+  state = { project_set: []};
 
   componentDidMount() {
     axios.get("/api/v1/users/" + this.props.match.params.id).then(user => {
@@ -74,7 +74,7 @@ class HobbyistUser extends PureComponent {
 }
 
 const SimpleProjectItem = props => (
-      <Link to={"project/" + props.id} className="project-item project-item--name">
+      <Link to={"/project/" + props.id} className="project-item project-item--name">
         {props.name}
       </Link>
 );

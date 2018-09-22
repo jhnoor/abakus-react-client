@@ -14,12 +14,15 @@ export default class Header extends PureComponent {
 
   componentDidMount() {
     const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
-    axios.get("/api/v1/auth/user", { headers }).then(user => {
-      this.setState({ user: user.data });
-      console.log(this.state);
-    }).catch(() => {
-      this.authError()
-    })
+    axios
+      .get("/api/v1/auth/user", { headers })
+      .then(user => {
+        this.setState({ user: user.data });
+        console.log(this.state);
+      })
+      .catch(() => {
+        this.authError();
+      });
   }
 
   authError() {
@@ -27,8 +30,8 @@ export default class Header extends PureComponent {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.setState({user: null});
+    localStorage.removeItem("token");
+    this.setState({ user: null });
   }
 
   render() {
@@ -38,7 +41,7 @@ export default class Header extends PureComponent {
           <a className="logo" href="/">
             Hobbyist
           </a>
-          <UserHeaderInfo user={this.state.user} logoutCallback={this.logout}/>
+          <UserHeaderInfo user={this.state.user} logoutCallback={this.logout} />
         </div>
         <nav className="links-header">
           <NavLink to="/projects" className="link">
@@ -69,12 +72,19 @@ class UserHeaderInfo extends PureComponent {
             to={"/hobbyist/" + this.props.user.id}
             className="user-header-info"
           >
-            <span className="badge kudos-badge">{"+" + this.props.user.kudos}</span>
+            <span className="badge kudos-badge">
+              {"+" + this.props.user.kudos}
+            </span>
             <span className="user-header-info--name">
               {this.props.user.username}
             </span>
           </Link>
-          <button className="btn btn-default" onClick={this.props.logoutCallback}>logout</button>
+          <button
+            className="btn btn-default"
+            onClick={this.props.logoutCallback}
+          >
+            logout
+          </button>
         </div>
       );
     } else {
