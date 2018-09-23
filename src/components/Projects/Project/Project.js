@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
 import "./Project.css";
-import { ProjectMetrics } from "./ProjectMetrics";
+import { ProjectMetrics } from "./ProjectMetrics/ProjectMetrics";
 import { Comment } from "./Comment/Comment";
 import { HobbyistItem } from "../../Hobbyists/Hobbyists";
 
@@ -28,6 +28,7 @@ export class Project extends PureComponent {
     return (
       <div className="project-page">
         <ProjectMetrics
+          id={this.state.id}
           karma={this.state.karma}
           comments={this.state.comments}
         />
