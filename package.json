@@ -15,5 +15,5 @@
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
-  "proxy": "http://localhost:80"
+  "proxy": "http://hobbyist.no"
 }
