@@ -1,3 +1,9 @@
-# TODO
+# 💻 The React application
 
-- upvote downvote not allowed if not logged in
+## Setup
+
+```npm install```
+
+If you're running against the public api `hobbyist.no` 
+
+```npm start```
