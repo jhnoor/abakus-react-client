@@ -6,9 +6,6 @@ import "./Header.css";
 export default class Header extends PureComponent {
   constructor() {
     super();
-    this.state = {
-      user: null
-    };
     this.logout = this.logout.bind(this);
   }
 
@@ -17,8 +14,7 @@ export default class Header extends PureComponent {
     axios
       .get("/api/v1/auth/user", { headers })
       .then(user => {
-        this.setState({ user: user.data });
-        console.log(this.state);
+        this.props.setUserCallback(user.data);
       })
       .catch(() => {
         this.authError();
@@ -41,13 +37,13 @@ export default class Header extends PureComponent {
           <a className="logo" href="/">
             Hobbyist
           </a>
-          <UserHeaderInfo user={this.state.user} logoutCallback={this.logout} />
+          <UserHeaderInfo user={this.props.user} logoutCallback={this.logout} />
         </div>
         <nav className="links-header">
           <NavLink to="/projects" className="link">
             Projects
           </NavLink>
-          {this.state.user ? <NavLink to="/new-project" className="btn btn-success">
+          {this.props.user ? <NavLink to="/new-project" className="btn btn-success">
             Create new project
           </NavLink> : null}
           <NavLink to="/hobbyists" className="link">
