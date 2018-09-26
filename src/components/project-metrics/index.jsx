@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
-import "./ProjectMetrics.css";
+import "./project-metrics.css";
 
 export class ProjectMetrics extends PureComponent {
   state = { upvoted: false, downvoted: false };
@@ -35,13 +35,13 @@ export class ProjectMetrics extends PureComponent {
             className={this.state.upvoted ? "up active" : "up"}
             onClick={() => this.upvote(this.props.id)}
           >
-            <i className="fas fa-caret-up" />
+            <i className="fas fa-caret-up"/>
           </button>
           <button
             className={this.state.downvoted ? "down active" : "down"}
             onClick={() => this.downvote(this.props.id)}
           >
-            <i className="fas fa-caret-down" />
+            <i className="fas fa-caret-down"/>
           </button>
         </div>
         <div className="karma-count">

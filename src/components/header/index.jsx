@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
-import "./Header.css";
+import "./header.css";
 
 export default class Header extends PureComponent {
   constructor() {
@@ -12,7 +12,7 @@ export default class Header extends PureComponent {
   componentDidMount() {
     const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
     axios
-      .get("/api/v1/auth/user", { headers })
+      .get("/api/v1/login/user", { headers })
       .then(user => {
         this.props.setUserCallback(user.data);
       })
@@ -43,9 +43,11 @@ export default class Header extends PureComponent {
           <NavLink to="/projects" className="link">
             Projects
           </NavLink>
-          {this.props.user ? <NavLink to="/new-project" className="btn btn-success">
-            Create new project
-          </NavLink> : null}
+          {this.props.user ? (
+            <NavLink to="/new-project" className="btn btn-success">
+              Create new project
+            </NavLink>
+          ) : null}
           <NavLink to="/hobbyists" className="link">
             Hobbyists
           </NavLink>

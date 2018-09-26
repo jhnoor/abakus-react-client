@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
-import "./Project.css";
-import { ProjectMetrics } from "./ProjectMetrics/ProjectMetrics";
-import { Comment } from "./Comment/Comment";
-import { HobbyistItem } from "../../Hobbyists/Hobbyists";
+import "./project.css";
+import { ProjectMetrics } from "../project-metrics";
+import { Comment } from "../comment";
+import { HobbyistItem } from "../hobbyists";
 
 export class Project extends PureComponent {
   constructor() {

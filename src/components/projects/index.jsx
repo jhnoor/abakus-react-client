@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./Projects.css";
-import { ProjectMetrics } from "./Project/ProjectMetrics/ProjectMetrics";
+import "./projects.css";
+import { ProjectMetrics } from "../project-metrics";
 
 export class Projects extends PureComponent {
   constructor() {

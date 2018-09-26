@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
-import "./NewProject.css";
+import "./project-new.css";
 
 export class NewProject extends PureComponent {
   onSubmit = e => {

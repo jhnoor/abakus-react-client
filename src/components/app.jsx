@@ -1,25 +1,25 @@
 import React, { Component } from "react";
-import Header from "./Header/Header";
+import Header from "./header";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 
-import { Login } from "./Auth/Login";
-import { Hobbyists } from "./Hobbyists/Hobbyists";
-import { Hobbyist } from "./Hobbyists/Hobbyist/Hobbyist";
-import { Projects } from "./Projects/Projects";
-import { Project } from "./Projects/Project/Project";
-import { NewProject } from "./Projects/NewProject/NewProject";
-import "./App.css";
+import { Login } from "./login";
+import { Hobbyists } from "./hobbyists";
+import { Hobbyist } from "./hobbyist";
+import { Projects } from "./projects";
+import { Project } from "./project";
+import { NewProject } from "./project-new";
+import "./app.css";
 
 class App extends Component {
   constructor() {
     super();
     this.state = { user: null };
-    this.setUser = this.setUser.bind(this)
+    this.setUser = this.setUser.bind(this);
   }
 
   setUser(user) {
     debugger;
-    this.setState({user});
+    this.setState({ user });
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
-import "./Login.css";
+import "./login.css";
 
 export class Login extends PureComponent {
   state = {
@@ -11,7 +11,7 @@ export class Login extends PureComponent {
 
   componentDidMount() {
     const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
-    axios.get("/api/v1/auth/user", { headers }).then(user => {
+    axios.get("/api/v1/login/user", { headers }).then(user => {
       this.setState({ user: user.data });
     });
   }
@@ -19,7 +19,7 @@ export class Login extends PureComponent {
   onSubmit = e => {
     e.preventDefault();
     axios
-      .post("/api/v1/auth/login/", this.state)
+      .post("/api/v1/login/login/", this.state)
       .then(r => {
         console.log(r);
         this.loginSuccessful(r.data.token);
@@ -35,6 +35,8 @@ export class Login extends PureComponent {
   }
 
   render() {
+    const NO_ACCUNT = "Don't have an account?";
+
     if (this.state.isLoggedIn) return <Redirect to="/" />;
     return (
       <div>
@@ -64,7 +66,8 @@ export class Login extends PureComponent {
             </div>
 
             <div className="no-account">
-              Don't have an account? <Link to="/register">Register</Link>
+              {NO_ACCUNT}
+              <Link to="/register">Register</Link>
             </div>
           </form>
         </div>
