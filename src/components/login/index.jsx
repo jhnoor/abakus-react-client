@@ -37,7 +37,7 @@ export class Login extends PureComponent {
   render() {
     const NO_ACCUNT = "Don't have an account?";
 
-    if (this.state.isLoggedIn) return <Redirect to="/" />;
+    if (this.state.isLoggedIn) return <Redirect to="/"/>;
     return (
       <div>
         <h3 className="page-title">Log in</h3>

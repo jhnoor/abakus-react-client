@@ -37,7 +37,7 @@ export default class Header extends PureComponent {
           <a className="logo" href="/">
             Hobbyist
           </a>
-          <UserHeaderInfo user={this.props.user} logoutCallback={this.logout} />
+          <UserHeaderInfo user={this.props.user} logoutCallback={this.logout}/>
         </div>
         <nav className="links-header">
           <NavLink to="/projects" className="link">

@@ -1,27 +1,27 @@
 .hobbyist-page {
-  background-color: #c4c4c4;
-  margin-top: 0.5rem;
+    background-color: #c4c4c4;
+    margin-top: 0.5rem;
 
-  color: #4d4d4d;
-  padding: 1rem 0.5rem;
-  display: flex;
-  flex-flow: column;
+    color: #4d4d4d;
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-flow: column;
 }
 
 .hobbyist-body-chunk {
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  align-content: center;
-  justify-content: center;
-  margin-bottom: 1.5rem;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
 }
 
 .hobbyist-user {
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  margin-bottom: 2rem;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    margin-bottom: 2rem;
 }
 
 .hobbyist-user > div {
@@ -29,40 +29,41 @@
 }
 
 .hobbyist-subtitle {
-  font-size: 26px;
-  font-weight: 300;
-  border-bottom: 2px solid #4d4d4d;
-  margin-bottom: 0.5rem;
+    font-size: 26px;
+    font-weight: 300;
+    border-bottom: 2px solid #4d4d4d;
+    margin-bottom: 0.5rem;
 }
 
 .hobbyist-username {
-  margin-bottom: 0.5rem;
-  display: flex;
-  justify-content: space-around;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-around;
 }
+
 .hobbyist-username > span {
-  border-bottom: 2px solid #4d4d4d;
-  font-size: 32px;
-  font-weight: 300;
+    border-bottom: 2px solid #4d4d4d;
+    font-size: 32px;
+    font-weight: 300;
 }
 
 .hobbyist-user--personal {
-  display: flex;
-  flex-flow: column;
+    display: flex;
+    flex-flow: column;
 }
 
 .hobbyist-metrics {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .hobbyist-metrics > div {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.1rem;
-  font-weight: 100;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.1rem;
+    font-weight: 100;
 }
 
 .bio {
