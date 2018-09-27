@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
-import axios from "axios";
 import { HobbyistItem } from "../hobbyist-item";
+import { getLoginUsers } from "../../service";
 
 export class Hobbyists extends PureComponent {
   constructor() {
@@ -11,7 +11,7 @@ export class Hobbyists extends PureComponent {
   }
 
   componentDidMount() {
-    axios.get("/api/v1/users").then(users => {
+    getLoginUsers().then(users => {
       console.log(users.data);
       this.setState({ users: users.data });
     });

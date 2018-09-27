@@ -25,12 +25,12 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <Header user={this.state.user} setUserCallback={this.setUser}/>
+          <Header user={this.state.user} setUserCallback={this.setUser} />
 
-          <Route path="/login" component={Login}/>
-          <Route path="/projects" component={Projects}/>
-          <Route path="/hobbyists" component={Hobbyists}/>
-          <Route path="/newproject" component={NewProject}/>
+          <Route path="/login" component={Login} />
+          <Route path="/projects" component={Projects} />
+          <Route path="/hobbyists" component={Hobbyists} />
+          <Route path="/newproject" component={NewProject} />
           <Route
             path="/project/:id"
             render={props => <Project key={props.match.params.id} {...props} />}
@@ -41,7 +41,7 @@ export default class App extends Component {
               <Hobbyist key={props.match.params.id} {...props} />
             )}
           />
-          <Route exact path="/" component={() => <Redirect to="/projects"/>}/>
+          <Route exact path="/" component={() => <Redirect to="/projects" />} />
         </div>
       </Router>
     );

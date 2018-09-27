@@ -1,14 +1,15 @@
 import React, { PureComponent } from "react";
-import axios from "axios";
 import "./project.css";
 import { ProjectMetrics } from "../project-metrics";
 import { Comment } from "../comment";
 import { HobbyistItem } from "../hobbyist-item";
+import { getProjects } from "../../service";
 
 export class Project extends PureComponent {
   constructor() {
     super();
     this.state = {
+      project: {},
       karma: 0,
       comments: [],
       participants: [],
@@ -20,29 +21,30 @@ export class Project extends PureComponent {
   }
 
   componentDidMount() {
-    axios
-      .get(`/api/v1/projects/${this.props.match.params.id}`)
-      .then(project => {
-        this.setState(project.data);
-      });
+    const { id } = this.props.match.params;
+    getProjects({ id }).then(project => {
+      this.setState({ project });
+    });
   }
 
   render() {
-    const { id, karma, comments, title, description, owner, participants } = this.state;
+    const {
+      id,
+      karma,
+      comments,
+      title,
+      description,
+      owner,
+      participants
+    } = this.state;
     return (
       <div className="project-page">
-        <ProjectMetrics
-          id={id}
-          karma={karma}
-          comments={comments}
-        />
+        <ProjectMetrics id={id} karma={karma} comments={comments} />
         <div className="project-body">
           <h3 className="project-title">{title}</h3>
           <div className="project-body-chunk">
             <span className="page-subtitle">Description</span>
-            <span className="project-description">
-              {description}
-            </span>
+            <span className="project-description">{description}</span>
           </div>
           <div className="project-body-chunk">
             <span className="page-subtitle">Owner</span>

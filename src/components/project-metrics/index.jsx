@@ -1,15 +1,18 @@
 import React, { PureComponent } from "react";
-import axios from "axios";
 import "./project-metrics.css";
+import { postProjectVote } from "../../service";
 
 export class ProjectMetrics extends PureComponent {
-
   constructor() {
     super();
     this.state = {
       upvoted: false,
       downvoted: false
     };
+  }
+
+  vote(id, value) {
+    postProjectVote({ id, data: value }).then(x => console.log(x.data));
   }
 
   upvote(id) {
@@ -20,13 +23,6 @@ export class ProjectMetrics extends PureComponent {
   downvote(id) {
     !this.state.downvoted && this.vote(id, -1);
     this.setState({ upvoted: false, downvoted: !this.state.downvoted });
-  }
-
-  vote(id, value) {
-    const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
-    axios
-      .post(`/api/v1/projects/${id}/vote/`, { value }, { headers })
-      .then(x => console.log(x.data));
   }
 
   static defaultProps = {
@@ -45,18 +41,16 @@ export class ProjectMetrics extends PureComponent {
             className={upvoted ? "up active" : "up"}
             onClick={() => this.upvote(id)}
           >
-            <i className="fas fa-caret-up"/>
+            <i className="fas fa-caret-up" />
           </button>
           <button
             className={downvoted ? "down active" : "down"}
             onClick={() => this.downvote(id)}
           >
-            <i className="fas fa-caret-down"/>
+            <i className="fas fa-caret-down" />
           </button>
         </div>
-        <div className="karma-count">
-          {`${karmaPrefix}${karma}`}
-        </div>
+        <div className="karma-count">{`${karmaPrefix}${karma}`}</div>
         <div className="number-of-comments">{comments.length}</div>
       </div>
     );

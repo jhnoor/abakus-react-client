@@ -1,11 +1,10 @@
 import React, { PureComponent } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import "./hobbyist.css";
 import { HobbyistUser } from "../hobbyist-user";
+import { getUser } from "../../service";
 
 export class Hobbyist extends PureComponent {
-
   constructor() {
     super();
     this.state = {
@@ -14,8 +13,8 @@ export class Hobbyist extends PureComponent {
   }
 
   componentDidMount() {
-    const { match } = this.props;
-    axios.get(`/api/v1/users/${match.params.id}`).then(user => {
+    const { id } = this.props.match.params;
+    getUser({ id }).then(user => {
       this.setState(user.data);
       console.log(this.state);
     });
@@ -27,16 +26,16 @@ export class Hobbyist extends PureComponent {
 
     return (
       <div className="hobbyist-page">
-        <HobbyistUser
-          username={username}
-          kudos={kudos}
-          bio={bio}
-        />
+        <HobbyistUser username={username} kudos={kudos} bio={bio} />
         <div className="hobbyist-body-chunk">
           <span className="hobbyist-subtitle">Current projects</span>
           <div>
             {project_set.map(project => (
-              <Link to={`/project/${project.id}`} className="project-item project-item--title">
+              <Link
+                key={project.id}
+                to={`/project/${project.id}`}
+                className="project-item project-item--title"
+              >
                 {project.title}
               </Link>
             ))}

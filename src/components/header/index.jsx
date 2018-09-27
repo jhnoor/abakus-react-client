@@ -28,7 +28,7 @@ export default class Header extends PureComponent {
 
   logout() {
     localStorage.removeItem("token");
-//    this.setState({ user: null }); not in use?
+    //    this.setState({ user: null }); not in use?
   }
 
   render() {
@@ -36,14 +36,20 @@ export default class Header extends PureComponent {
     return (
       <div>
         <div className="top-header">
-          <a className="logo" href="/">Hobbyist</a>
-          <UserHeaderInfo user={user} logoutCallback={this.logout}/>
+          <a className="logo" href="/">
+            Hobbyist
+          </a>
+          <UserHeaderInfo user={user} logoutCallback={this.logout} />
         </div>
         <nav className="links-header">
           <NavLink to="/projects" className="link">
             Projects
           </NavLink>
-          {user && (<NavLink to="/newproject" className="btn btn-success">Create new project</NavLink>)}
+          {user && (
+            <NavLink to="/newproject" className="btn btn-success">
+              Create new project
+            </NavLink>
+          )}
           <NavLink to="/hobbyists" className="link">
             Hobbyists
           </NavLink>

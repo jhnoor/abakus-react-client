@@ -1,16 +1,14 @@
 import React, { PureComponent } from "react";
-import axios from "axios";
 import "./project-new.css";
+import { postNewProject } from "../../service";
 
 export class NewProject extends PureComponent {
-
   onSubmit = e => {
     e.preventDefault();
     console.log(this.state);
-    const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
-
-    axios.post("/api/v1/projects/", this.state, { headers }).then(r => {
+    postNewProject({ data: this.state }).then(r => {
       console.log(r);
+      // TODO, notify user that project is created
     });
   };
 

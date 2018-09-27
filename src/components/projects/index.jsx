@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
-import axios from "axios";
 import { ProjectItem } from "../project-item";
+import { getProjects } from "../../service";
 
 export class Projects extends PureComponent {
   constructor() {
@@ -9,9 +9,8 @@ export class Projects extends PureComponent {
   }
 
   componentDidMount() {
-    axios.get("/api/v1/projects").then(x => {
-      console.log(x.data);
-      this.setState({ projects: x.data });
+    getProjects({}).then(response => {
+      this.setState({ projects: response.data });
     });
   }
 

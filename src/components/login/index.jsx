@@ -2,9 +2,9 @@ import React, { PureComponent } from "react";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 import "./login.css";
+import { getLoginUser } from "../../service";
 
 export class Login extends PureComponent {
-
   constructor() {
     super();
     this.state = {
@@ -14,8 +14,8 @@ export class Login extends PureComponent {
   }
 
   componentDidMount() {
-    const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
-    axios.get("/api/v1/login/user", { headers }).then(user => {
+    //    axios.get("/api/v1/login/user", { headers }) --- denne skjønte jeg ikke helt...
+    getLoginUser().then(user => {
       this.setState({ user: user.data });
     });
   }
@@ -41,7 +41,7 @@ export class Login extends PureComponent {
   render() {
     const NO_ACCUNT = "Don't have an account?";
 
-    if (this.state.isLoggedIn) return <Redirect to="/"/>;
+    if (this.state.isLoggedIn) return <Redirect to="/" />;
     return (
       <div>
         <h3 className="page-title">Log in</h3>
