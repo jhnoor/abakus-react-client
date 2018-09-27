@@ -4,10 +4,14 @@ import { Link, Redirect } from "react-router-dom";
 import "./login.css";
 
 export class Login extends PureComponent {
-  state = {
-    username: "",
-    password: ""
-  };
+
+  constructor() {
+    super();
+    this.state = {
+      username: "",
+      password: ""
+    };
+  }
 
   componentDidMount() {
     const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
@@ -20,9 +24,9 @@ export class Login extends PureComponent {
     e.preventDefault();
     axios
       .post("/api/v1/login/login/", this.state)
-      .then(r => {
-        console.log(r);
-        this.loginSuccessful(r.data.token);
+      .then(response => {
+        console.log(response);
+        this.loginSuccessful(response.data.token);
       })
       .catch(err => {
         console.warn(err);

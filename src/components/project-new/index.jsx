@@ -3,6 +3,7 @@ import axios from "axios";
 import "./project-new.css";
 
 export class NewProject extends PureComponent {
+
   onSubmit = e => {
     e.preventDefault();
     console.log(this.state);

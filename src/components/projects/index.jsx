@@ -1,8 +1,6 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import "./projects.css";
-import { ProjectMetrics } from "../project-metrics";
+import { ProjectItem } from "../project-item";
 
 export class Projects extends PureComponent {
   constructor() {
@@ -33,36 +31,6 @@ export class Projects extends PureComponent {
                 comments={project.comments}
               />
             ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-class ProjectItem extends PureComponent {
-  static defaultProps = {
-    id: 1,
-    title: "no title",
-    description: "no description",
-    karma: 0,
-    comments: []
-  };
-
-  render() {
-    return (
-      <div className="project-item">
-        <ProjectMetrics
-          id={this.props.id}
-          karma={this.props.karma}
-          comments={this.props.comments}
-        />
-        <div className="project-item--group">
-          <Link to={"project/" + this.props.id} className="project-item--title">
-            {this.props.title}
-          </Link>
-          <div className="project-item--description">
-            {this.props.description}
           </div>
         </div>
       </div>

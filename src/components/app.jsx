@@ -10,7 +10,7 @@ import { Project } from "./project";
 import { NewProject } from "./project-new";
 import "./app.css";
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super();
     this.state = { user: null };
@@ -30,7 +30,7 @@ class App extends Component {
           <Route path="/login" component={Login}/>
           <Route path="/projects" component={Projects}/>
           <Route path="/hobbyists" component={Hobbyists}/>
-          <Route path="/new-project" component={NewProject}/>
+          <Route path="/newproject" component={NewProject}/>
           <Route
             path="/project/:id"
             render={props => <Project key={props.match.params.id} {...props} />}
@@ -47,5 +47,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

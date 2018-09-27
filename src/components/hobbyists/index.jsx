@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
 import axios from "axios";
-import "./hobbyists.css";
-import { Link } from "react-router-dom";
+import { HobbyistItem } from "../hobbyist-item";
 
 export class Hobbyists extends PureComponent {
   constructor() {
@@ -34,24 +33,6 @@ export class Hobbyists extends PureComponent {
             ))}
           </div>
         </div>
-      </div>
-    );
-  }
-}
-
-export class HobbyistItem extends PureComponent {
-  render() {
-    return (
-      <div className="hobbyist-item" style={this.props.style}>
-        <div>
-          <span className="badge kudos-badge">+{this.props.kudos}</span>
-        </div>
-        <Link
-          to={"../hobbyist/" + this.props.id}
-          className="hobbyist-item--name"
-        >
-          {this.props.username}
-        </Link>
       </div>
     );
   }

@@ -3,7 +3,14 @@ import axios from "axios";
 import "./project-metrics.css";
 
 export class ProjectMetrics extends PureComponent {
-  state = { upvoted: false, downvoted: false };
+
+  constructor() {
+    super();
+    this.state = {
+      upvoted: false,
+      downvoted: false
+    };
+  }
 
   upvote(id) {
     !this.state.upvoted && this.vote(id, 1);
@@ -28,26 +35,29 @@ export class ProjectMetrics extends PureComponent {
   };
 
   render() {
+    const { upvoted, downvoted } = this.state;
+    const { id, karma, comments } = this.props;
+    const karmaPrefix = karma >= 0 && "+";
     return (
       <div className="project-item--group metrics">
         <div className="karma">
           <button
-            className={this.state.upvoted ? "up active" : "up"}
-            onClick={() => this.upvote(this.props.id)}
+            className={upvoted ? "up active" : "up"}
+            onClick={() => this.upvote(id)}
           >
             <i className="fas fa-caret-up"/>
           </button>
           <button
-            className={this.state.downvoted ? "down active" : "down"}
-            onClick={() => this.downvote(this.props.id)}
+            className={downvoted ? "down active" : "down"}
+            onClick={() => this.downvote(id)}
           >
             <i className="fas fa-caret-down"/>
           </button>
         </div>
         <div className="karma-count">
-          {(this.props.karma >= 0 ? "+" : "") + this.props.karma}
+          {`${karmaPrefix}${karma}`}
         </div>
-        <div className="number-of-comments">{this.props.comments.length}</div>
+        <div className="number-of-comments">{comments.length}</div>
       </div>
     );
   }
