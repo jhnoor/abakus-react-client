@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//const URL_BASE = "http://hobbyist.no"; //TODO need to set CORS-rules on server before it can be used from local
+//const URL_BASE = "http://hobbyist.no"; //TODO need to set CORS before it can be used from local
 const URL_BASE = "";
 const URL_PROJECTS = "/api/v1/projects/";
 const URL_VOTE = "/vote/";
@@ -10,24 +10,24 @@ const URL_USERS = "/api/v1/users/";
 
 const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
 
-const handleError = error => {
+const handleError = (error) => {
   console.error(error);
   // TODO fire error handling with error modal dialog component
 };
 
 //wrapper for get requests
 const getRequest = ({ url, params = {} }) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     axios({
       method: "get",
       baseURL: URL_BASE,
       url,
       params
     })
-      .then(response => {
+      .then((response) => {
         resolve(response);
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(`
         GET request failed with url: ${URL_BASE}${url} 
         and params: ${JSON.stringify(params)}, 
@@ -36,9 +36,9 @@ const getRequest = ({ url, params = {} }) => {
       });
   });
 };
-//wrapper for get requests with auth token on header
+
 const getRequestAuthorized = ({ url, params = {} }) => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     axios({
       method: "get",
       baseURL: URL_BASE,
@@ -46,10 +46,10 @@ const getRequestAuthorized = ({ url, params = {} }) => {
       params,
       headers
     })
-      .then(response => {
+      .then((response) => {
         resolve(response);
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(`
         GET request failed with url: ${URL_BASE}${url} 
         and params: ${JSON.stringify(params)}, 
@@ -59,9 +59,9 @@ const getRequestAuthorized = ({ url, params = {} }) => {
   });
 };
 
-//wrapper for post requests with auth token on header
-const postRequestAuthorized = ({ url, data = {} }) => {
-  return new Promise(resolve => {
+//wrapper for post requests
+const postRequest = ({ url, data = {} }) => {
+  return new Promise((resolve) => {
     axios({
       method: "post",
       baseURL: URL_BASE,
@@ -69,10 +69,10 @@ const postRequestAuthorized = ({ url, data = {} }) => {
       data,
       headers
     })
-      .then(response => {
+      .then((response) => {
         resolve(response);
       })
-      .catch(error => {
+      .catch((error) => {
         throw new Error(`
         POST request failed with url: ${url} 
         and data: ${JSON.stringify(data)},
@@ -84,13 +84,13 @@ const postRequestAuthorized = ({ url, data = {} }) => {
 
 export const getLoginUsers = () => {
   const url = URL_LOGIN_USERS;
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     try {
-      getRequest({ url })
-        .then(response => {
-          resolve(response);
-        });
-    } catch (error) {
+      getRequest({ url }).then(response => {
+        resolve(response);
+      });
+    }
+    catch (error) {
       handleError(error);
     }
   });
@@ -99,13 +99,13 @@ export const getLoginUsers = () => {
 export const getLoginUser = () => {
   const url = URL_LOGIN_USER;
   const params = { ...headers };
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     try {
-      getRequestAuthorized({ url, params })
-        .then(response => {
-          resolve(response);
-        });
-    } catch (error) {
+      getRequest({ url, params }).then(response => {
+        resolve(response);
+      });
+    }
+    catch (error) {
       handleError(error);
     }
   });
@@ -114,27 +114,28 @@ export const getLoginUser = () => {
 export const getUser = ({ id }) => {
   const url = `${URL_USERS}${id}`;
   const params = { ...headers };
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     try {
-      getRequest({ url, params })
-        .then(response => {
-          resolve(response);
-        });
-    } catch (error) {
+      getRequest({ url, params }).then(response => {
+        resolve(response);
+      });
+    }
+    catch (error) {
       handleError(error);
     }
   });
 };
 
+
 export const getProjects = ({ id = "" }) => {
   const url = `${URL_PROJECTS}${id}`;
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     try {
-      getRequest({ url })
-        .then(response => {
-          resolve(response);
-        });
-    } catch (error) {
+      getRequest({ url }).then(response => {
+        resolve(response);
+      });
+    }
+    catch (error) {
       handleError(error);
     }
   });
@@ -142,13 +143,13 @@ export const getProjects = ({ id = "" }) => {
 
 export const postNewProject = ({ data }) => {
   const url = URL_PROJECTS;
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     try {
-      postRequestAuthorized({ url, data, headers })
-        .then(response => {
-          resolve(response);
-        });
-    } catch (error) {
+      postRequest({ url, data, headers }).then(response => {
+        resolve(response);
+      });
+    }
+    catch (error) {
       handleError(error);
     }
   });
@@ -156,14 +157,16 @@ export const postNewProject = ({ data }) => {
 
 export const postProjectVote = ({ id, data }) => {
   const url = `${URL_PROJECTS}${id}${URL_VOTE}`;
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     try {
-      postRequestAuthorized({ url, data, headers })
-        .then(response => {
-          resolve(response);
-        });
-    } catch (error) {
+      postRequest({ url, data, headers }).then(response => {
+        resolve(response);
+      });
+    }
+    catch (error) {
       handleError(error);
     }
   });
 };
+
+
