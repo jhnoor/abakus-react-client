@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 import "./header.css";
 import { UserHeaderInfo } from "../header-user-info";
+import { getLoginUser } from "../../service";
 
 export default class Header extends PureComponent {
   constructor() {
@@ -11,9 +11,7 @@ export default class Header extends PureComponent {
   }
 
   componentDidMount() {
-    const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
-    axios
-      .get("/api/v1/login/user", { headers })
+    getLoginUser()
       .then(user => {
         this.props.setUserCallback(user.data);
       })
@@ -28,7 +26,7 @@ export default class Header extends PureComponent {
 
   logout() {
     localStorage.removeItem("token");
-    //    this.setState({ user: null }); not in use?
+    //    this.setState({ user: null }); TODO is this not in use - no state present?
   }
 
   render() {
@@ -39,7 +37,7 @@ export default class Header extends PureComponent {
           <a className="logo" href="/">
             Hobbyist
           </a>
-          <UserHeaderInfo user={user} logoutCallback={this.logout} />
+          <UserHeaderInfo user={user} logoutCallback={this.logout}/>
         </div>
         <nav className="links-header">
           <NavLink to="/projects" className="link">

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//const URL_BASE = "http://hobbyist.no"; //TODO need to set CORS before it can be used from local
+//const URL_BASE = "http://hobbyist.no"; //TODO need to set CORS-rules on server before it can be used from local
 const URL_BASE = "";
 const URL_PROJECTS = "/api/v1/projects/";
 const URL_VOTE = "/vote/";
@@ -36,7 +36,7 @@ const getRequest = ({ url, params = {} }) => {
       });
   });
 };
-
+//wrapper for get requests with auth token on header
 const getRequestAuthorized = ({ url, params = {} }) => {
   return new Promise(resolve => {
     axios({
@@ -59,8 +59,8 @@ const getRequestAuthorized = ({ url, params = {} }) => {
   });
 };
 
-//wrapper for post requests
-const postRequest = ({ url, data = {} }) => {
+//wrapper for post requests with auth token on header
+const postRequestAuthorized = ({ url, data = {} }) => {
   return new Promise(resolve => {
     axios({
       method: "post",
@@ -86,9 +86,10 @@ export const getLoginUsers = () => {
   const url = URL_LOGIN_USERS;
   return new Promise(resolve => {
     try {
-      getRequest({ url }).then(response => {
-        resolve(response);
-      });
+      getRequest({ url })
+        .then(response => {
+          resolve(response);
+        });
     } catch (error) {
       handleError(error);
     }
@@ -100,9 +101,10 @@ export const getLoginUser = () => {
   const params = { ...headers };
   return new Promise(resolve => {
     try {
-      getRequestAuthorized({ url, params }).then(response => {
-        resolve(response);
-      });
+      getRequestAuthorized({ url, params })
+        .then(response => {
+          resolve(response);
+        });
     } catch (error) {
       handleError(error);
     }
@@ -114,9 +116,10 @@ export const getUser = ({ id }) => {
   const params = { ...headers };
   return new Promise(resolve => {
     try {
-      getRequest({ url, params }).then(response => {
-        resolve(response);
-      });
+      getRequest({ url, params })
+        .then(response => {
+          resolve(response);
+        });
     } catch (error) {
       handleError(error);
     }
@@ -127,9 +130,10 @@ export const getProjects = ({ id = "" }) => {
   const url = `${URL_PROJECTS}${id}`;
   return new Promise(resolve => {
     try {
-      getRequest({ url }).then(response => {
-        resolve(response);
-      });
+      getRequest({ url })
+        .then(response => {
+          resolve(response);
+        });
     } catch (error) {
       handleError(error);
     }
@@ -140,9 +144,10 @@ export const postNewProject = ({ data }) => {
   const url = URL_PROJECTS;
   return new Promise(resolve => {
     try {
-      postRequest({ url, data, headers }).then(response => {
-        resolve(response);
-      });
+      postRequestAuthorized({ url, data, headers })
+        .then(response => {
+          resolve(response);
+        });
     } catch (error) {
       handleError(error);
     }
@@ -153,9 +158,10 @@ export const postProjectVote = ({ id, data }) => {
   const url = `${URL_PROJECTS}${id}${URL_VOTE}`;
   return new Promise(resolve => {
     try {
-      postRequest({ url, data, headers }).then(response => {
-        resolve(response);
-      });
+      postRequestAuthorized({ url, data, headers })
+        .then(response => {
+          resolve(response);
+        });
     } catch (error) {
       handleError(error);
     }

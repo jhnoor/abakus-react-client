@@ -8,10 +8,7 @@ export class Comment extends PureComponent {
     return (
       <div className="project-comment">
         <div className="project-comment--text">{text}</div>
-        <Link
-          to={`../hobbyist/${commenterId}`}
-          className="project-comment--username"
-        >
+        <Link to={`../hobbyist/${commenterId}`} className="project-comment--username">
           {username}
         </Link>
       </div>

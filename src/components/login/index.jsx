@@ -15,9 +15,10 @@ export class Login extends PureComponent {
 
   componentDidMount() {
     //    axios.get("/api/v1/login/user", { headers }) --- denne skjønte jeg ikke helt...
-    getLoginUser().then(user => {
-      this.setState({ user: user.data });
-    });
+    getLoginUser()
+      .then(user => {
+        this.setState({ user: user.data });
+      });
   }
 
   onSubmit = e => {
@@ -41,7 +42,7 @@ export class Login extends PureComponent {
   render() {
     const NO_ACCUNT = "Don't have an account?";
 
-    if (this.state.isLoggedIn) return <Redirect to="/" />;
+    if (this.state.isLoggedIn) return <Redirect to="/"/>;
     return (
       <div>
         <h3 className="page-title">Log in</h3>
