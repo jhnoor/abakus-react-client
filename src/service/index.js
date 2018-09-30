@@ -3,7 +3,7 @@ import axios from "axios";
 //const URL_BASE = "http://hobbyist.no"; //TODO need to set CORS before it can be used from local
 const URL_BASE = "";
 const URL_PROJECTS = "/api/v1/projects/";
-const URL_VOTE = "/vote/";
+const URL_VOTE = "/castVote/";
 const URL_LOGIN_USER = "/api/v1/login/user/";
 const URL_LOGIN_USERS = "/api/v1/login/users/";
 const URL_USERS = "/api/v1/users/";

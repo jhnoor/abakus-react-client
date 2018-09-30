@@ -9,19 +9,23 @@ export class ProjectMetrics extends PureComponent {
       upvoted: false,
       downvoted: false
     };
+    this.handleUpVote = this.handleUpVote.bind(this);
+    this.handleDownVote = this.handleDownVote.bind(this);
   }
 
-  vote(id, value) {
-    postProjectVote({ id, data: value }).then(x => console.log(x.data));
+  castVote(id, value) {
+    postProjectVote({ id, data: value })
+      .then(x => console.log(x.data)
+      );
   }
 
-  upvote(id) {
-    !this.state.upvoted && this.vote(id, 1);
+  handleUpVote(id) {
+    !this.state.upvoted && this.castVote(id, 1);
     this.setState({ upvoted: !this.state.upvoted, downvoted: false });
   }
 
-  downvote(id) {
-    !this.state.downvoted && this.vote(id, -1);
+  handleDownVote(id) {
+    !this.state.downvoted && this.castVote(id, -1);
     this.setState({ upvoted: false, downvoted: !this.state.downvoted });
   }
 
@@ -39,15 +43,15 @@ export class ProjectMetrics extends PureComponent {
         <div className="karma">
           <button
             className={upvoted ? "up active" : "up"}
-            onClick={() => this.upvote(id)}
+            onClick={() => this.handleUpVote(id)}
           >
-            <i className="fas fa-caret-up" />
+            <i className="fas fa-caret-up"/>
           </button>
           <button
             className={downvoted ? "down active" : "down"}
-            onClick={() => this.downvote(id)}
+            onClick={() => this.handleDownVote(id)}
           >
-            <i className="fas fa-caret-down" />
+            <i className="fas fa-caret-down"/>
           </button>
         </div>
         <div className="karma-count">{`${karmaPrefix}${karma}`}</div>
