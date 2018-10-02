@@ -2,8 +2,8 @@ import React, { PureComponent } from "react";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
 import "./header.css";
-// eslint-disable-line
-import { getLoginUser } from "../../service";
+
+import { getLoginUser } from "../../service"; // eslint-disable-line
 
 export default class Header extends PureComponent {
   constructor() {
@@ -12,7 +12,7 @@ export default class Header extends PureComponent {
   }
 
   componentDidMount() {
-    //todo figure out why this doesn't work...
+    //todo @Jama, figure out why this doesn't work...
     const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
     axios
       .get("/api/v1/login/user", { headers })

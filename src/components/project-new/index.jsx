@@ -3,7 +3,6 @@ import "./project-new.css";
 import { postNewProject } from "../../service";
 
 export class NewProject extends PureComponent {
-
   constructor() {
     super();
     this.state = {
@@ -17,16 +16,20 @@ export class NewProject extends PureComponent {
   onSubmit = e => {
     e.preventDefault();
     postNewProject({ data: this.state }).then(response => {
+        console.log(JSON.stringify(response));
       // TODO, notify user that project is created
     });
   };
 
-  handleUpdateTitle = (event) => {
+  handleUpdateTitle = event => {
+    console.log('----------------------------------------->');
+    console.log(JSON.stringify(event));
+    console.log('<----------------------------------------');
     const { value } = event.target;
     value && this.setState({ title: value });
   };
 
-  handleUpdateDescription = (event) => {
+  handleUpdateDescription = event => {
     const { value } = event.target;
     value && this.setState({ description: value });
   };
@@ -43,7 +46,7 @@ export class NewProject extends PureComponent {
                 type="text"
                 id="title"
                 placeholder="enter project title..."
-                onChange={event => this.handleUpdateTitle}
+                onChange={this.handleUpdateTitle}
               />
             </div>
             <div className="input-group text-area">
@@ -51,7 +54,7 @@ export class NewProject extends PureComponent {
               <textarea
                 type="text"
                 id="description"
-                onChange={event => this.handleUpdateDescription}
+                onChange={this.handleUpdateDescription}
               />
             </div>
             <div>

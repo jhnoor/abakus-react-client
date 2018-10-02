@@ -14,9 +14,7 @@ export class ProjectMetrics extends PureComponent {
   }
 
   castVote(id, value) {
-    postProjectVote({ id, data: value })
-      .then(x => console.log(x.data)
-      );
+    postProjectVote({ id, data: value }).then(x => console.log(x.data));
   }
 
   handleUpVote(id) {
@@ -45,13 +43,13 @@ export class ProjectMetrics extends PureComponent {
             className={upvoted ? "up active" : "up"}
             onClick={() => this.handleUpVote(id)}
           >
-            <i className="fas fa-caret-up"/>
+            <i className="fas fa-caret-up" />
           </button>
           <button
             className={downvoted ? "down active" : "down"}
             onClick={() => this.handleDownVote(id)}
           >
-            <i className="fas fa-caret-down"/>
+            <i className="fas fa-caret-down" />
           </button>
         </div>
         <div className="karma-count">{`${karmaPrefix}${karma}`}</div>
