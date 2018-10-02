@@ -16,15 +16,12 @@ export class NewProject extends PureComponent {
   onSubmit = e => {
     e.preventDefault();
     postNewProject({ data: this.state }).then(response => {
-        console.log(JSON.stringify(response));
+      console.log(JSON.stringify(response));
       // TODO, notify user that project is created
     });
   };
 
   handleUpdateTitle = event => {
-    console.log('----------------------------------------->');
-    console.log(JSON.stringify(event));
-    console.log('<----------------------------------------');
     const { value } = event.target;
     value && this.setState({ title: value });
   };
