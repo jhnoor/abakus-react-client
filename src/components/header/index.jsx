@@ -13,16 +13,19 @@ export default class Header extends PureComponent {
 
   componentDidMount() {
     //todo @Jama, figure out why this doesn't work...
-    const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
-    axios
-      .get("/api/v1/login/user", { headers })
-      //    getLoginUser()
-      .then(user => {
-        this.props.setUserCallback(user.data);
-      })
-      .catch(() => {
-        this.authError();
-      });
+    const token = localStorage.getItem("token");
+    if (token) {
+      const headers = { Authorization: `Token ${localStorage.getItem("token")}` };
+      axios
+        .get("/api/v1/auth/user", { headers })
+        //          getLoginUser()
+        .then(user => {
+          this.props.setUserCallback(user.data);
+        })
+        .catch(() => {
+          this.authError();
+        });
+    }
   }
 
   authError() {
@@ -41,7 +44,7 @@ export default class Header extends PureComponent {
           <a className="logo" href="/">
             Hobbyist
           </a>
-          <UserHeaderInfo user={this.props.user} logoutCallback={this.logout} />
+          <UserHeaderInfo user={this.props.user} logoutCallback={this.logout}/>
         </div>
         <nav className="links-header">
           <NavLink to="/projects" className="link">

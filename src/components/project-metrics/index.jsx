@@ -17,12 +17,14 @@ export class ProjectMetrics extends PureComponent {
     postProjectVote({ id, data: value }).then(x => console.log(x.data));
   }
 
-  handleUpVote(id) {
+  handleUpVote() {
+    const { id } = this.props;
     !this.state.upvoted && this.castVote(id, 1);
     this.setState({ upvoted: !this.state.upvoted, downvoted: false });
   }
 
-  handleDownVote(id) {
+  handleDownVote() {
+    const { id } = this.props;
     !this.state.downvoted && this.castVote(id, -1);
     this.setState({ upvoted: false, downvoted: !this.state.downvoted });
   }
@@ -34,22 +36,22 @@ export class ProjectMetrics extends PureComponent {
 
   render() {
     const { upvoted, downvoted } = this.state;
-    const { id, karma, comments } = this.props;
+    const { karma, comments } = this.props;
     const karmaPrefix = karma >= 0 && "+";
     return (
       <div className="project-item--group metrics">
         <div className="karma">
           <button
             className={upvoted ? "up active" : "up"}
-            onClick={() => this.handleUpVote(id)}
+            onClick={this.handleUpVote}
           >
-            <i className="fas fa-caret-up" />
+            <i className="fas fa-caret-up"/>
           </button>
           <button
             className={downvoted ? "down active" : "down"}
-            onClick={() => this.handleDownVote(id)}
+            onClick={this.handleDownVote}
           >
-            <i className="fas fa-caret-down" />
+            <i className="fas fa-caret-down"/>
           </button>
         </div>
         <div className="karma-count">{`${karmaPrefix}${karma}`}</div>

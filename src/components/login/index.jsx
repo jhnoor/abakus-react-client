@@ -23,7 +23,7 @@ export class Login extends PureComponent {
   onSubmit = e => {
     e.preventDefault();
     axios
-      .post("/api/v1/login/login/", this.state)
+      .post("/api/v1/auth/login/", this.state)
       .then(response => {
         console.log(response);
         this.loginSuccessful(response.data.token);

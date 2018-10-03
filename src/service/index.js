@@ -4,7 +4,7 @@ import axios from "axios";
 const URL_BASE = "";
 const URL_PROJECTS = "/api/v1/projects/";
 const URL_VOTE = "/castVote/";
-const URL_LOGIN_USER = "/api/v1/login/user/";
+const URL_GET_LOGGED_IN_USER = "/api/v1/auth/user/";
 const URL_LOGIN_USERS = "/api/v1/login/users/";
 const URL_USERS = "/api/v1/users/";
 
@@ -98,7 +98,7 @@ export const getLoginUsers = () => {
 };
 
 export const getLoginUser = () => {
-  const url = URL_LOGIN_USER;
+  const url = URL_GET_LOGGED_IN_USER;
   const params = { ...headers };
   return new Promise(resolve => {
     try {
