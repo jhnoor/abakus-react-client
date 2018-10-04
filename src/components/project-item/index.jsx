@@ -1,9 +1,9 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./project-item.css";
-import { ProjectMetrics } from "../project-metrics";
+import ProjectMetrics from "../project-metrics";
 
-export class ProjectItem extends PureComponent {
+export default class ProjectItem extends Component {
   static defaultProps = {
     id: 1,
     title: "no title",

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ProjectItem } from "../project-item";
+import ProjectItem from "../project-item";
 import { getProjects } from "../../service";
 
 export default class ProjectsList extends Component {

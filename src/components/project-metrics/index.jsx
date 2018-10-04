@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import "./project-metrics.css";
-import {
-  putProjectUpvote,
-  putProjectDownvote
-} from "../../service";
+import { putProjectUpvote, putProjectDownvote } from "../../service";
 
-export class ProjectMetrics extends Component {
+export default class ProjectMetrics extends Component {
   constructor() {
     super();
     this.state = {
@@ -40,7 +37,7 @@ export class ProjectMetrics extends Component {
   render() {
     const { upvoted, downvoted } = this.state;
     const { karma, comments } = this.props;
-    const karmaPrefix = karma >= 0 && "+";
+    const karmaPrefix = karma >= 0 ? "+" : "";
     return (
       <div className="project-item--group metrics">
         <div className="karma">
