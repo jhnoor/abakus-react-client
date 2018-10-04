@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import "./login.css";
 import { getLoginUser } from "../../service";
 
-export class Login extends PureComponent {
+export default class Login extends PureComponent {
   constructor() {
     super();
     this.state = {
@@ -25,11 +25,10 @@ export class Login extends PureComponent {
     axios
       .post("/api/v1/auth/login/", this.state)
       .then(response => {
-        console.log(response);
         this.loginSuccessful(response.data.token);
       })
       .catch(err => {
-        console.warn(err);
+        // console.warn(err); TODO handle error
       });
   };
 
@@ -39,7 +38,7 @@ export class Login extends PureComponent {
   }
 
   render() {
-    const NO_ACCUNT = "Don't have an account?";
+    const NO_ACCOUNT = "Don't have an account?";
 
     if (this.state.isLoggedIn) return <Redirect to="/" />;
     return (
@@ -70,7 +69,7 @@ export class Login extends PureComponent {
             </div>
 
             <div className="no-account">
-              {NO_ACCUNT}
+              {NO_ACCOUNT}
               <Link to="/register">Register</Link>
             </div>
           </form>

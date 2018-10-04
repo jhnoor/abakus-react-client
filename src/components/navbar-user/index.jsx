@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
-import "../header/header.css";
+import "../navbar/navbar.css";
 
-export class UserHeaderInfo extends PureComponent {
+export default class NavbarUser extends PureComponent {
   static defaultProps = {
     user: null
   };

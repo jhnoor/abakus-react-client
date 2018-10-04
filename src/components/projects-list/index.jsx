@@ -1,8 +1,8 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { ProjectItem } from "../project-item";
 import { getProjects } from "../../service";
 
-export class Projects extends PureComponent {
+export default class ProjectsList extends Component {
   constructor() {
     super();
     this.state = { projects: [] };

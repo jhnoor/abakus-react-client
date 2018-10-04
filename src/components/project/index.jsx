@@ -1,15 +1,13 @@
 import React, { PureComponent } from "react";
 import "./project.css";
 import { ProjectMetrics } from "../project-metrics";
-import { Comment } from "../comment";
 import { HobbyistItem } from "../hobbyist-item";
 import { getProjects } from "../../service";
 
-export class Project extends PureComponent {
+export default class Project extends PureComponent {
   constructor() {
     super();
     this.state = {
-      project: {},
       karma: 0,
       comments: [],
       participants: [],
@@ -23,7 +21,7 @@ export class Project extends PureComponent {
   componentDidMount() {
     const { id } = this.props.match.params;
     getProjects({ id }).then(project => {
-      this.setState({ project });
+      this.setState({ ...project.data });
     });
   }
 
@@ -64,17 +62,6 @@ export class Project extends PureComponent {
                 id={participant.id}
                 username={participant.username}
                 kudos={participant.kudos}
-              />
-            ))}
-          </div>
-          <div className="project-body-chunk">
-            <span className="page-subtitle">Comments</span>
-            {comments.map(comment => (
-              <Comment
-                key={comment.id}
-                username={comment.commenter.username}
-                commenterId={comment.commenter.id}
-                text={comment.text}
               />
             ))}
           </div>

@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import Header from "./header";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 
-import { Login } from "./login";
-import { Hobbyists } from "./hobbyists";
-import { Hobbyist } from "./hobbyist";
-import { Projects } from "./projects";
-import { Project } from "./project";
-import { NewProject } from "./project-new";
+import Navbar from "./navbar";
+import Login from "./login";
+import ProjectsList from "./projects-list";
+import Project from "./project";
 import "./app.css";
 
 export default class App extends Component {
@@ -25,23 +22,15 @@ export default class App extends Component {
     return (
       <Router>
         <div>
-          <Header user={this.state.user} setUserCallback={this.setUser} />
+          <Navbar user={this.state.user} setUserCallback={this.setUser} />
 
           <Route path="/login" component={Login} />
-          <Route path="/projects" component={Projects} />
-          <Route path="/hobbyists" component={Hobbyists} />
-          <Route path="/newproject" component={NewProject} />
+          <Route path="/projects-list" component={ProjectsList} />
           <Route
             path="/project/:id"
             render={props => <Project key={props.match.params.id} {...props} />}
           />
-          <Route
-            path="/hobbyist/:id"
-            render={props => (
-              <Hobbyist key={props.match.params.id} {...props} />
-            )}
-          />
-          <Route exact path="/" component={() => <Redirect to="/projects" />} />
+          <Route exact path="/" component={() => <Redirect to="/projects-list" />} />
         </div>
       </Router>
     );

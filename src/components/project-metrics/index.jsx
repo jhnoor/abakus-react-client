@@ -1,8 +1,11 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import "./project-metrics.css";
-import { postProjectVote } from "../../service";
+import {
+  putProjectUpvote,
+  putProjectDownvote
+} from "../../service";
 
-export class ProjectMetrics extends PureComponent {
+export class ProjectMetrics extends Component {
   constructor() {
     super();
     this.state = {
@@ -13,20 +16,20 @@ export class ProjectMetrics extends PureComponent {
     this.handleDownVote = this.handleDownVote.bind(this);
   }
 
-  castVote(id, value) {
-    postProjectVote({ id, data: value }).then(x => console.log(x.data));
-  }
-
   handleUpVote() {
     const { id } = this.props;
-    !this.state.upvoted && this.castVote(id, 1);
-    this.setState({ upvoted: !this.state.upvoted, downvoted: false });
+    !this.state.upvoted &&
+      putProjectUpvote({ id }).then(() =>
+        this.setState({ upvoted: !this.state.upvoted, downvoted: false })
+      );
   }
 
   handleDownVote() {
     const { id } = this.props;
-    !this.state.downvoted && this.castVote(id, -1);
-    this.setState({ upvoted: false, downvoted: !this.state.downvoted });
+    !this.state.downvoted &&
+      putProjectDownvote({ id }).then(() =>
+        this.setState({ upvoted: false, downvoted: !this.state.downvoted })
+      );
   }
 
   static defaultProps = {
@@ -45,13 +48,13 @@ export class ProjectMetrics extends PureComponent {
             className={upvoted ? "up active" : "up"}
             onClick={this.handleUpVote}
           >
-            <i className="fas fa-caret-up"/>
+            <i className="fas fa-caret-up" />
           </button>
           <button
             className={downvoted ? "down active" : "down"}
             onClick={this.handleDownVote}
           >
-            <i className="fas fa-caret-down"/>
+            <i className="fas fa-caret-down" />
           </button>
         </div>
         <div className="karma-count">{`${karmaPrefix}${karma}`}</div>
