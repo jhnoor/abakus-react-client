@@ -1,6 +1,6 @@
 // exporterte actions
 import { DOWN_VOTE, UP_VOTE } from "./action-types";
-import { putProjectUpvote, putProjectDownvote} from "../service";
+import { putProjectUpvote, putProjectDownvote } from "../service";
 
 export const upVoteAction = id => {
   putProjectUpvote({ id }).then(() => console.log("success"));
