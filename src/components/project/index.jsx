@@ -31,6 +31,8 @@ export default class Project extends Component {
             <span className="page-subtitle">Description</span>
             <span className="project-description">{description}</span>
           </div>
+
+          {/* Oppgave: Legg til kommentarfelt her. Hint: lag ny react komponent */}
         </div>
       </div>
     );

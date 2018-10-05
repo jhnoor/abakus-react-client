@@ -1,32 +1,24 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+// import { putProjectUpvote, putProjectDownvote } from "../../service";
+import { upVoteAction, downVoteAction } from "../../logic/action-creators";
 import "./project-metrics.css";
-import { putProjectUpvote, putProjectDownvote } from "../../service";
 
-export default class ProjectMetrics extends Component {
+class ProjectMetrics extends Component {
   constructor() {
     super();
-    this.state = {
-      upvoted: false,
-      downvoted: false
-    };
     this.handleUpVote = this.handleUpVote.bind(this);
     this.handleDownVote = this.handleDownVote.bind(this);
   }
 
   handleUpVote() {
-    const { id } = this.props;
-    !this.state.upvoted &&
-      putProjectUpvote({ id }).then(() =>
-        this.setState({ upvoted: !this.state.upvoted, downvoted: false })
-      );
+    const { id, upvoted } = this.props;
+    !upvoted && this.props.onUpVoteClick(id);
   }
 
   handleDownVote() {
-    const { id } = this.props;
-    !this.state.downvoted &&
-      putProjectDownvote({ id }).then(() =>
-        this.setState({ upvoted: false, downvoted: !this.state.downvoted })
-      );
+    const { id, downvoted } = this.props;
+    !downvoted && this.props.onDownVoteClick(id);
   }
 
   static defaultProps = {
@@ -35,8 +27,7 @@ export default class ProjectMetrics extends Component {
   };
 
   render() {
-    const { upvoted, downvoted } = this.state;
-    const { karma, comments } = this.props;
+    const { karma, comments, upvoted, downvoted } = this.props;
     const karmaPrefix = karma >= 0 ? "+" : "";
     return (
       <div className="project-item--group metrics">
@@ -60,3 +51,22 @@ export default class ProjectMetrics extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    upvoted: state.upvoted,
+    downvoted: state.downvoted
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onUpVoteClick: id => dispatch(upVoteAction(id)),
+    onDownVoteClick: id => dispatch(downVoteAction(id))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProjectMetrics);
