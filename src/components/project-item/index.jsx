@@ -5,10 +5,7 @@ import ProjectMetrics from "../project-metrics";
 
 export default class ProjectItem extends Component {
   static defaultProps = {
-    id: 1,
-    title: "no title",
     description: "no description",
-    karma: 0,
     comments: []
   };
 
@@ -16,7 +13,7 @@ export default class ProjectItem extends Component {
     const { id, karma, comments, title, description } = this.props;
     return (
       <div className="project-item">
-        <ProjectMetrics id={id} karma={karma} comments={comments} />
+        <ProjectMetrics id={id} karma={karma} noOfComments={comments.length} />
         <div className="project-item--group">
           <Link to={`project/${id}`} className="project-item--title">
             {title}

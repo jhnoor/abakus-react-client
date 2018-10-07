@@ -1,26 +1,30 @@
 import React, { Component } from "react";
 import ProjectItem from "../project-item";
-import { getProjects } from "../../service";
+import { connect } from "react-redux";
 
-export default class ProjectsList extends Component {
-  constructor() {
-    super();
-    this.state = { projects: [] };
-  }
+import { getProjectsAction } from "../../logic/action-creators";
 
+class ProjectsList extends Component {
   componentDidMount() {
-    getProjects({}).then(response => {
-      this.setState({ projects: response.data });
-    });
+    this.props.dispatch(getProjectsAction());
   }
 
   render() {
+    const { error, loading, projects } = this.props;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    }
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <div>
         <h3 className="page-title">All projects</h3>
         <div className="page-container">
           <div className="list">
-            {this.state.projects.map(project => (
+            {projects.map(project => (
               <ProjectItem
                 key={project.id}
                 id={project.id}
@@ -36,3 +40,11 @@ export default class ProjectsList extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  projects: state.projects,
+  loading: state.loading,
+  error: state.error
+});
+
+export default connect(mapStateToProps)(ProjectsList);

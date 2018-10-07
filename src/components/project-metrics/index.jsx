@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { putProjectUpvote, putProjectDownvote } from "../../service";
-import { upVoteAction, downVoteAction } from "../../logic/action-creators";
 import "./project-metrics.css";
+import { upvoteAction, downvoteAction } from "../../logic/action-creators";
 
 class ProjectMetrics extends Component {
   constructor() {
@@ -13,21 +12,16 @@ class ProjectMetrics extends Component {
 
   handleUpVote() {
     const { id, upvoted } = this.props;
-    !upvoted && this.props.onUpVoteClick(id);
+    !upvoted && this.props.upvote(id);
   }
 
   handleDownVote() {
     const { id, downvoted } = this.props;
-    !downvoted && this.props.onDownVoteClick(id);
+    !downvoted && this.props.downvote(id);
   }
 
-  static defaultProps = {
-    karma: 0,
-    comments: []
-  };
-
   render() {
-    const { karma, comments, upvoted, downvoted } = this.props;
+    const { karma, noOfComments, upvoted, downvoted } = this.props;
     const karmaPrefix = karma >= 0 ? "+" : "";
     return (
       <div className="project-item--group metrics">
@@ -46,24 +40,21 @@ class ProjectMetrics extends Component {
           </button>
         </div>
         <div className="karma-count">{`${karmaPrefix}${karma}`}</div>
-        <div className="number-of-comments">{comments.length}</div>
+        <div className="number-of-comments">{noOfComments}</div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapDispatchToProps = dispatch => {
   return {
-    upvoted: state.upvoted,
-    downvoted: state.downvoted
+    upvote: id => dispatch(upvoteAction(id)),
+    downvote: id => dispatch(downvoteAction(id))
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onUpVoteClick: id => dispatch(upVoteAction(id)),
-    onDownVoteClick: id => dispatch(downVoteAction(id))
-  };
+const mapStateToProps = (state, props) => {
+  return state.projects[props.id] 
 };
 
 export default connect(

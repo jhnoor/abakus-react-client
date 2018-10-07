@@ -7,7 +7,6 @@ export default class Project extends Component {
   constructor() {
     super();
     this.state = {
-      karma: 0,
       comments: [],
       participants: []
     };
@@ -24,15 +23,13 @@ export default class Project extends Component {
     const { id, karma, comments, title, description } = this.state;
     return (
       <div className="project-page">
-        <ProjectMetrics id={id} karma={karma} comments={comments} />
+        <ProjectMetrics id={id} karma={karma} noOfComments={comments.length} />
         <div className="project-body">
           <h3 className="project-title">{title}</h3>
           <div className="project-body-chunk">
             <span className="page-subtitle">Description</span>
             <span className="project-description">{description}</span>
           </div>
-
-          {/* Oppgave: Legg til kommentarfelt her. Hint: lag ny react komponent */}
         </div>
       </div>
     );
