@@ -9,7 +9,7 @@ import {
 import { putProjectUpvote, putProjectDownvote, getProjects } from "../service";
 
 export const upvoteAction = id => {
-  putProjectUpvote({ id }).then(() => console.log("success"));
+  putProjectUpvote({ id }).then(() => console.log("API upvote successful"));
 
   return {
     type: UP_VOTE,
@@ -17,7 +17,7 @@ export const upvoteAction = id => {
   };
 };
 export const downvoteAction = id => {
-  putProjectDownvote({ id }).then(() => console.log("success"));
+  putProjectDownvote({ id }).then(() => console.log("API downvote successful"));
 
   return {
     type: DOWN_VOTE,

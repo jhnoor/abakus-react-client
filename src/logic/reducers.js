@@ -20,7 +20,11 @@ export const reducers = (state = initialState, action) => {
       return Object.assign({}, state, {
         projects: state.projects.map(project => {
           return project.id === action.id
-            ? Object.assign({}, project, { karma: project.karma+1, upvoted: true, downvoted: false })
+            ? Object.assign({}, project, {
+                karma: project.karma + 1,
+                upvoted: true,
+                downvoted: false
+              })
             : project;
         })
       });
@@ -29,7 +33,11 @@ export const reducers = (state = initialState, action) => {
       return Object.assign({}, state, {
         projects: state.projects.map(project => {
           return project.id === action.id
-            ? Object.assign({}, project, { karma: project.karma-1, upvoted: false, downvoted: true })
+            ? Object.assign({}, project, {
+                karma: project.karma - 1,
+                upvoted: false,
+                downvoted: true
+              })
             : project;
         })
       });
