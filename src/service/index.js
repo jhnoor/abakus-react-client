@@ -2,8 +2,8 @@ import axios from "axios";
 
 const URL_BASE = "http://hobbyist.no/api/v1/";
 const URL_PROJECTS = "projects/";
-const URL_DOWNVOTE = "upvote/";
-const URL_UPVOTE = "downvote/";
+const URL_DOWNVOTE = "downvote/";
+const URL_UPVOTE = "upvote/";
 
 const handleError = error => {
   console.error(error); // TODO modal for this?
