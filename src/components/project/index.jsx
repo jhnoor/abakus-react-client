@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./project.css";
 import ProjectMetrics from "../project-metrics";
+import ProjectComment from "../project-comment";
 import { getProjects } from "../../service";
 
 export default class Project extends Component {
@@ -29,6 +30,12 @@ export default class Project extends Component {
           <div className="project-body-chunk">
             <span className="page-subtitle">Description</span>
             <span className="project-description">{description}</span>
+          </div>
+          <div className="project-body-chunk">
+            <span className="page-subtitle">Comments</span>
+            {comments.map(comment => (
+              <ProjectComment text={comment.text} />
+            ))}
           </div>
         </div>
       </div>
