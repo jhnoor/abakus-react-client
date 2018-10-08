@@ -1,5 +1,9 @@
 # 💻 The React application
 
+## Requirements
+* [Node v10](https://nodejs.org/en/download/)
+* [Chrome Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
+
 ## Setup
 
 `npm install`

@@ -55,7 +55,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state, props) => {
   const project = state.projects.find(project => project.id === props.id);
-  return project ? project : {}
+  return project ? project : {};
 };
 
 export default connect(
