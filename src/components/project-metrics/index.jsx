@@ -16,8 +16,7 @@ class ProjectMetrics extends Component {
   }
 
   handleDownVote() {
-    const { id, downvoted } = this.props;
-    !downvoted && this.props.downvote(id);
+    console.warn("Not implemented");
   }
 
   render() {
@@ -49,7 +48,6 @@ class ProjectMetrics extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     upvote: id => dispatch(upvoteAction(id)),
-    downvote: id => dispatch(downvoteAction(id))
   };
 };
 

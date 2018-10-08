@@ -1,5 +1,4 @@
 export const UP_VOTE = "UP_VOTE";
-export const DOWN_VOTE = "DOWN_VOTE";
 
 export const GET_PROJECTS_BEGIN = "GET_PROJECTS_BEGIN";
 export const GET_PROJECTS_SUCCESS = "GET_PROJECTS_SUCCESS";

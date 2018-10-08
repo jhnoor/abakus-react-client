@@ -1,12 +1,11 @@
 // exporterte actions
 import {
-  DOWN_VOTE,
   UP_VOTE,
   GET_PROJECTS_BEGIN,
   GET_PROJECTS_FAILURE,
   GET_PROJECTS_SUCCESS
 } from "./action-types";
-import { putProjectUpvote, putProjectDownvote, getProjects } from "../service";
+import { putProjectUpvote, getProjects } from "../service";
 
 export const upvoteAction = id => {
   putProjectUpvote({ id }).then(() => console.log("API upvote successful"));
@@ -17,12 +16,7 @@ export const upvoteAction = id => {
   };
 };
 export const downvoteAction = id => {
-  putProjectDownvote({ id }).then(() => console.log("API downvote successful"));
-
-  return {
-    type: DOWN_VOTE,
-    id: id
-  };
+  console.log("bupkis");
 };
 
 export function getProjectsAction() {
