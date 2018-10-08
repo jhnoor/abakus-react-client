@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./project-metrics.css";
-import { upvoteAction, downvoteAction } from "../../logic/action-creators";
+import { upvoteAction } from "../../logic/action-creators";
 
 class ProjectMetrics extends Component {
   constructor() {
