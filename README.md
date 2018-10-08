@@ -26,6 +26,17 @@ http://hobbyist.no/api/v1/auth/login/               | POST  | Login a user. Expe
 http://hobbyist.no/api/v1/auth/user/                | GET   | Get currently logged in user | ⛔️ Must be logged in
 
 
+## Oppgaver
 
+1. Det finnes kommentarer på prosjektene, og vi ønsker å vise dette på hvert enkelt prosjekt
+Lag nødvendige komponenter for å vise kommentarer på et prosjekt.
+Tips: se på organiseringen av project-list og props på project
+2. Redux er allerede lagt til i applikasjonen og delvis implementert på up-/downvote, knappen som trigger downvote fungerer bare med lokal tilstandshåndtering i komponenten.
+Enable down-vote via Redux på prosjekt.
+Tips: se på upvotes!
+3. Vi ønsker også å bygge ut funksjonalitet i applikasjonen som gir en notification når en upvote eller downvote blir gitt. Foreløpig trenger du bare å logge til konsollen, men i en funksjon som senere kan bruker for å lage notifications.
+Lag funksjonalitet som, basert på en positiv eller negativ stemme, logger dette til konsollet.
+4. Om det blir tid til overs vil vi gjerne ha et kommentarfelt på prosjektene. Det er laget et endepunkt hvor du kan lagre kommentarer til: http://hobbyist.no/api/v1/projects/:id/comment/
+Lag en react-komponent, med et input/textarea som muliggjør å skrive en kommentar på prosjektet, og poste det til API-et.
 
 
