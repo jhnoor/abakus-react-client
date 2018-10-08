@@ -1,5 +1,7 @@
 # 💻 The React application
 
+## [Link til Ib react-redux-example](https://github.com/ibjohansen/react-redux-example/)
+
 ## Requirements
 * [Node v10](https://nodejs.org/en/download/)
 * [Chrome Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
